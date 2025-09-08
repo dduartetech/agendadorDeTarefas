@@ -1,5 +1,8 @@
 package com.diegoduarte.agendadorDeTarefas.infrascture.security;
 
+
+import com.diegoduarte.agendadorDeTarefas.infrascture.security.JwtUtil;
+import com.diegoduarte.agendadorDeTarefas.infrascture.security.UserDetailsServiceImpl;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
