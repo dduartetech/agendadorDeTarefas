@@ -2,6 +2,7 @@ package com.diegoduarte.agendadorDeTarefas.controller;
 
 import com.diegoduarte.agendadorDeTarefas.business.dto.TarefasDTO;
 import com.diegoduarte.agendadorDeTarefas.business.TarefasService;
+import com.diegoduarte.agendadorDeTarefas.infrascture.enums.StatusNotEnum;
 import lombok.RequiredArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
@@ -32,5 +33,23 @@ public class TarefasController {
     @GetMapping
     public ResponseEntity<List<TarefasDTO>> buscaListaDeTarefasPorEmail (@RequestHeader("Authorization") String token) {
         return ResponseEntity.ok(tarefasService.buscaTarefasPorEmail(token));
+    }
+
+    @DeleteMapping
+    public ResponseEntity<Void> deletaTarefaPorId (@RequestParam("id") String id) {
+       tarefasService.deletaTarefaPorId(id);
+       return ResponseEntity.ok().build();
+    }
+
+    @PatchMapping
+    public ResponseEntity<TarefasDTO> alteraStatus (@RequestParam("status") StatusNotEnum statusNotEnum,
+                                                    @RequestParam("id") String id) {
+        return ResponseEntity.ok(tarefasService.alterarStatus(statusNotEnum, id));
+    }
+
+    @PutMapping
+    public ResponseEntity<TarefasDTO> updateTarefa (@RequestBody TarefasDTO tarefasDTO,
+                                                    @RequestParam("id") String id) {
+        return ResponseEntity.ok(tarefasService.uptadteTarefa(tarefasDTO, id));
     }
 }
